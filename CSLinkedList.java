@@ -1,11 +1,8 @@
-import java.util.AbstractList;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.ConcurrentModificationException;
+import java.util.*;
 
 public class CSLinkedList<E> extends AbstractList<E> {
 
-  private static final class Node<E> {
+    private static final class Node<E> {
     E data;
     Node<E> next;
     Node(E d, Node<E> n) { data = d; next = n; }
@@ -113,10 +110,105 @@ public class CSLinkedList<E> extends AbstractList<E> {
     modCount++;
   }
 
+  /**
+   * Check if an item is already present in list, adds if there isn't
+   * @param item
+   * @return true or false
+   */
+  public boolean addIfAbsent(E item) {
+      if(indexOf(item) < 0){
+          add(item);
+          return true;
+      }
+      else{
+          return false;
+      }
+  }
+
+  /**
+   * Moves specific item to the front of the list if found in list
+   * @param item
+   */
+  public void moveToFront(E item){
+      int index =  indexOf(item);
+      if(index != -1){
+          CSLinkedList.this.remove(indexOf(item));
+          add(0, item);
+      }
+  }
+
+  /**
+   * Adds item directly after a specific item index
+   * @param target
+   * @param newItem
+   * @return true or false
+   */
+  public boolean addAfter(E target, E newItem){
+      int index = indexOf(target);
+      if(index != -1){
+          add((index+1), newItem);
+          return true;
+      }
+      return false;
+  }
+
+    /**
+     * Adds items in order, (Under Construction)
+     * @param item
+     * @param cmp
+     */
+  public void addInOrder(E item, Comparator<E> cmp){
+      Node<E> newNode = new Node<>(item, null);
+      if(head == tail){
+          head.next = newNode;
+          tail = newNode;
+      }
+      Node<E> current = head;
+      while(cmp.compare(item, current.data) > 0){
+          current = current.next;
+      }
+      newNode.next = current.next;
+      current.next = newNode;
+  }
+
+    /**
+     * Removes first Occurrence of an item
+     * @param item
+     * @return true or false
+     */
+  public boolean removeFirstOccurrence(E item){
+      int index = indexOf(item);
+      if(index != -1){
+          remove(index);
+          return true;
+      }
+      return false;
+  }
+
+    /**
+     *Copies the original LinkedList into a new list
+     * @return
+     */
+    public CSLinkedList<E> copy(){
+        //Make a new CSLinkedList
+        CSLinkedList<E> copy = new CSLinkedList<>();
+        Node<E> cur = this.head;
+        while(cur != null){
+            copy.add(cur.data);
+            cur = cur.next;
+        }
+        //Using Collections to shuffle the new CSLinkedList
+        Collections.shuffle(copy);
+
+        return copy;
+    }
+
+
   @Override
   public Iterator<E> iterator() {
     return new Itr();
   }
+
 
   private final class Itr implements Iterator<E> {
     private Node<E> prev = head;
