@@ -158,17 +158,15 @@ public class CSLinkedList<E> extends AbstractList<E> {
      * @param cmp
      */
   public void addInOrder(E item, Comparator<E> cmp){
-      Node<E> newNode = new Node<>(item, null);
-      if(head == tail){
-          head.next = newNode;
-          tail = newNode;
+      int i = 0;
+      for(Node<E> cur = head.next; cur != null; cur = cur.next, i++){
+          int com = cmp.compare(cur.data, item);
+          if(com == 0 || com > 0){
+              add(i, item);
+              return;
+          }
       }
-      Node<E> current = head;
-      while(cmp.compare(item, current.data) > 0){
-          current = current.next;
-      }
-      newNode.next = current.next;
-      current.next = newNode;
+      add(size, item);
   }
 
     /**

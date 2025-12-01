@@ -18,9 +18,9 @@ public class CSLinkedListDriver {
         //runLL5_RecentlyContacted();
         //runLL6_ShoppingListAddAfter();
         //runLL7_BusRouteStops();
-        //runLL8_EventScheduleSorted();
+        runLL8_EventScheduleSorted();
         //runLL9_BugTrackerRemoveById();
-        runLL10_PlaylistShuffleCopy();
+        //runLL10_PlaylistShuffleCopy();
     }
 
     // LL1 – Music Playlist Manager
@@ -179,16 +179,24 @@ public class CSLinkedListDriver {
     }
 
     // LL8 – Event Schedule (Insert by Time)
+    //Comparator for to compare each item going into the list
+    // Negative -> Before
+    // 0 -> Same
+    // Positive -> After
+    static Comparator<String> time = (a,b) -> (int)(a.compareTo(b));
     private static void runLL8_EventScheduleSorted() {
         // TODO: Implement task LL8 here.
         // You may add a helper method addInOrder(E item, Comparator<E> cmp) to CSLinkedList if needed.
         System.out.println("-----EventScheduleSorted-----");
-        CSLinkedList<String> events = new CSLinkedList<>();
-        Comparator<String> cmp = (o1,o2) -> o1.compareTo(o2);
-        events.addInOrder("07:00 Wake_Up", cmp);
-        events.addInOrder("07:30 Brush_Teeth", cmp);
-        events.addInOrder("08:00 Shower", cmp);
-        System.out.println(events);
+        CSLinkedList<String> events = new CSLinkedList<String>();
+        events.addInOrder("07:00 Wake_Up", time);
+        events.addInOrder("08:00 Shower", time);
+        events.addInOrder("10:00 Start First Class", time);
+        events.addInOrder("09:00 Breakfast", time);
+        events.addInOrder("09:30 Get ready for school", time);
+        for (String event : events) {
+            System.out.println(event);
+        }
 
     }
 

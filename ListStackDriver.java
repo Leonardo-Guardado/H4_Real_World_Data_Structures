@@ -19,9 +19,9 @@ public class ListStackDriver {
         //runS4_ReverseWord();
         //runS5_DirectoryNavigation();
         //runS6_CalculatorHistory();
-        runS7_PalindromeChecker();
+        //runS7_PalindromeChecker();
         //runS8_FunctionCallStack();
-        //runS9_StackOfPlates();
+        runS9_StackOfPlates();
     }
 
     // S1 – Browser Back Button
@@ -191,10 +191,55 @@ public class ListStackDriver {
     // S8 – Function Call Stack Simulator
     private static void runS8_FunctionCallStack() {
         // TODO: Implement task S8 here.
+        System.out.println("-----FunctionCallStack-----");
+        ListStack<String> functions = new ListStack<>();
+        //Push into first Call Stack
+        System.out.println("Starting Program");
+        System.out.println("Calling Function 1");
+        functions.push("Function1");
+        //Calls on current stack address
+        System.out.println("Current Call Stack: " +  functions);
+        //Push into second from first
+        System.out.println("Calling Function 2 from 1");
+        functions.push("Function2");
+        System.out.println("Current Call Stack: " +  functions);
+        //Push into third from second
+        System.out.println("Calling Function 3 from 2");
+        functions.push("Function3");
+        System.out.println("Current Call Stack: " +  functions);
+        //3rd function returns
+        System.out.println("Function 3 returns");
+        functions.pop();
+        System.out.println("Current Call Stack: " +  functions);
+        //2nd function returns
+        System.out.println("Function 2 returns");
+        functions.pop();
+        System.out.println("Current Call Stack: " +  functions);
+        //1st function returns
+        System.out.println("Function 1 returns");
+        functions.pop();
+        System.out.println("Current Call Stack: " +  functions);
+        System.out.println("Ending Program");
+        //All calls and returns happen within the same ListStack
     }
 
     // S9 – Stack of Plates (Capacity-Limited Stack)
     private static void runS9_StackOfPlates() {
         // TODO: Implement task S9 here.
+        System.out.println("-----StackOfPlates-----");
+        ListStack<String> plates = new ListStack<>();
+        //Initial Capacity
+        int capacity = 10;
+        //Capacity + 1 for an example of going over the limit
+        for(int i = 1; i <= capacity + 1; i++) {
+            //Maximum capacity warning
+            if(plates.size() == capacity) {
+                System.out.println("Already reached maximum capacity");
+                break;
+            }
+            //If size isn't at same length as capacity
+            plates.push(String.valueOf(i));
+            System.out.println(i);
+        }
     }
 }
