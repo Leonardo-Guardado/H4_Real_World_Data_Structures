@@ -17,11 +17,11 @@ public class ListStackDriver {
         //runS2_TextEditorUndo();
         //runS3_BalancedParentheses();
         //runS4_ReverseWord();
-        //runS5_DirectoryNavigation();
+        runS5_DirectoryNavigation();
         //runS6_CalculatorHistory();
         //runS7_PalindromeChecker();
         //runS8_FunctionCallStack();
-        runS9_StackOfPlates();
+        //runS9_StackOfPlates();
     }
 
     // S1 – Browser Back Button
@@ -116,33 +116,27 @@ public class ListStackDriver {
         System.out.println("-----DirectoryNavigation-----");
         ListStack<String> directory = new ListStack<>();
         //User
-        System.out.println(directory.push("cd User"));
-        directory.pop();
+        System.out.println("cd User");
         directory.push("User");
         System.out.println("Current Directory: " + directory.peek());
         //Archives
-        System.out.println(directory.push("cd Archives"));
-        directory.pop();
+        System.out.println("cd Archives");
         directory.push("Archives");
         System.out.println("Current Directory: " + directory.peek());
         //Documents
-        System.out.println(directory.push("cd Documents"));
-        directory.pop();
+        System.out.println("cd Documents");
         directory.push("Documents");
         System.out.println("Current Directory: " + directory.peek());
         //School
-        System.out.println(directory.push("cd School"));
-        directory.pop();
+        System.out.println("cd School");
         directory.push("School");
         System.out.println("Current Directory: " + directory.peek());
         //Back to Documents
-        System.out.println(directory.push("cd .."));
-        directory.pop();
+        System.out.println("cd ..");
         directory.pop();
         System.out.println("Current Directory: " + directory.peek());
         //Back to Archives
-        System.out.println(directory.push("cd .."));
-        directory.pop();
+        System.out.println("cd ..");
         directory.pop();
         System.out.println("Current Directory: " + directory.peek());
     }
