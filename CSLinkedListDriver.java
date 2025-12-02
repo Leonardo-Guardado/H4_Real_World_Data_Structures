@@ -62,6 +62,7 @@ public class CSLinkedListDriver {
         String urgent1 = "Taking_Out_Trash";
         String urgent2 = "Clean_Bathroom";
         System.out.println("Urgent Tasks: " + urgent1 + ", " + urgent2);
+        //Adding urgent tasks to the front of the list
         todo.add(0, urgent1);
         todo.add(0, urgent2);
         System.out.println(todo);
@@ -70,6 +71,7 @@ public class CSLinkedListDriver {
         String completed2 = todo.get(todo.indexOf("Mop"));
         String completed3 = todo.get(todo.indexOf("Taking_Out_Trash"));
         System.out.println("Completed Tasks: " + completed1 + ", " + completed2 + ", " + completed3);
+        //Removing each of the completed tasks from the list
         todo.remove(completed1);
         todo.remove(completed2);
         todo.remove(completed3);
@@ -84,14 +86,14 @@ public class CSLinkedListDriver {
         System.out.println("-----CourseWaitlist-----");
         CSLinkedList<String> waitlist = new CSLinkedList<String>();
         waitlist.addIfAbsent("John");
-        waitlist.addIfAbsent("John");
+        waitlist.addIfAbsent("John"); //Duplicate, don't add
         waitlist.addIfAbsent("Leona");
         waitlist.addIfAbsent("Andrew");
         waitlist.addIfAbsent("Rebecca");
         waitlist.addIfAbsent("Andrea");
-        waitlist.addIfAbsent("Leona");
+        waitlist.addIfAbsent("Leona"); //Duplicate, don't add
         waitlist.addIfAbsent("Luis");
-        waitlist.addIfAbsent("Andrew");
+        waitlist.addIfAbsent("Andrew"); //Duplicate, don't add
         System.out.println("Waitlist: " + waitlist);
         System.out.println();
     }
@@ -128,7 +130,7 @@ public class CSLinkedListDriver {
         contacts.add("Joseph");
         contacts.add("Lisa");
         System.out.println("Before Contacting: " + contacts);
-        //Move Recently Contacted
+        //Move Recently Contacted to the front of the list
         contacts.moveToFront("Joseph");
         contacts.moveToFront("Melissa");
         System.out.println("After Contacting: " + contacts);
@@ -154,6 +156,7 @@ public class CSLinkedListDriver {
         String new1 = "Sugar";
         String new2 = "Oranges";
         System.out.println("Added items: "+ new1 + ", " + new2);
+        //Using addAfter to add new items directly after a specific item
         shoppingList.addAfter("Coffee",new1);
         shoppingList.addAfter("Apples",new2);
         System.out.println("New: " + shoppingList);
@@ -170,9 +173,11 @@ public class CSLinkedListDriver {
         stops.add("15th Street E");
         stops.add("25th Street E");
         System.out.println("Original Route: " + stops);
+        //Add new stop to route
         String newStop = "Avenue O";
         System.out.println("New Stop: " + newStop);
         stops.add(3, newStop);
+        //Removing closed stop
         System.out.println("Removing Stop: " + stops.remove(stops.indexOf("15th Street E")));
         System.out.println("New Route: " + stops);
         System.out.println();
@@ -230,7 +235,7 @@ public class CSLinkedListDriver {
         playlist.add("We'll_Be_OK-Asking_Alexandria");
         playlist.add("Truth-Alexander_Ebert");
         playlist.add("BodySnatchers-Radiohead");
-
+        //Copy original playlist which will be shuffled in the copy() method
         shuffledPlaylist = playlist.copy();
         System.out.println("Original Playlist: " + playlist);
         System.out.println("Updated Playlist: " + shuffledPlaylist);

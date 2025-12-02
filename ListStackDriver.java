@@ -56,14 +56,19 @@ public class ListStackDriver {
         // TODO: Implement task S2 here.
         System.out.println("-----TextEditorUndo-----");
         ListStack<String> editor = new ListStack<>();
+        //Original Text
         editor.push("Hello, this is a text editor");
         System.out.println("Current Text: " + editor.peek());
+        //Addition Text 1
         editor.push(editor.peek() + " with an undo button");
         System.out.println("Current Text: " + editor.peek());
+        //Addition Text 2
         editor.push(editor.peek() + " that hardly works");
         System.out.println("Current Text: " + editor.peek());
+        //Remove most recent addition to text
         editor.pop();
         System.out.println("Current Text: " + editor.peek());
+        //Remove the next most recent addition to text
         editor.pop();
         System.out.println("Current Text: " + editor.peek());
         System.out.println();
@@ -74,17 +79,21 @@ public class ListStackDriver {
         // TODO: Implement task S3 here.
         System.out.println("-----BalancedParentheses-----");
         ListStack<String> balancedParentheses = new ListStack<>();
+        //Scanner to allow more variety of tests
         Scanner sc = new Scanner(System.in);
         String text = sc.nextLine();
-        int i = 0;
+        //Separating the string into characters
         for(char c : text.toCharArray()) {
+            //Pushing something into stack when "(" is found
             if(c == '(') {
                 balancedParentheses.push(text);
             }
+            //Popping stack when ")" is found
             else if(c == ')') {
                 balancedParentheses.pop();
             }
         }
+        //Pushing and Popping based of "(" and ")" should result in an empty stack to make it "balanced"
         if(balancedParentheses.isEmpty()) {
             System.out.println("Balanced Parenthesis Found");
         }
@@ -99,13 +108,16 @@ public class ListStackDriver {
         // TODO: Implement task S4 here.
         System.out.println("-----ReverseWord-----");
         ListStack<String> reverseWord = new ListStack<>();
+        //Input string
         String word = "hello";
         System.out.println("Normal: " + word);
+        //Pushing each character in string into stack
         for(char c : word.toCharArray()) {
             reverseWord.push(String.valueOf(c));
         }
         System.out.print("Reversed: ");
         while (!reverseWord.isEmpty()) {
+            //Pops each character in reverse order
             System.out.print(reverseWord.pop());
         }
     }
